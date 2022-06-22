@@ -1,0 +1,12 @@
+public class AdminController : Controller
+{
+	private IStoreRepository repository;
+	public AdminController(IStoreRepository repo)
+	{
+		repository = repo;
+	}
+	public IActionResult Index()
+	{
+		return View(repository.Products);
+	}
+}
