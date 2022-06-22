@@ -1,0 +1,14 @@
+Security Attributes
+  [Authorize]
+  public class AccountController : Controller {
+      [AllowAnonymous]
+      public IActionResult Login() {
+          return View();
+  }
+  [HttpPost]
+  [AllowAnonymous]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> Login(LoginModel details) {
+        return View(details);
+        }
+  }
