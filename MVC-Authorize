@@ -1,0 +1,35 @@
+
+action level
+    public class HomeController : Controller {
+      [Authorize]
+        public ViewResult Index(){
+          return View();
+        }
+     }
+     
+     
+controller level    
+    [Authorize]
+    public class HomeController : Controller {
+      public ViewResult Index(){
+        return View();
+      }
+    }
+    
+    
+    *********************************************************************************************
+    Imperative
+  public ActionResult Details(int id)
+  {
+    if (!User.IsInRole("EmployeeViewer"))
+        return new HttpUnauthorizedResult();
+  // Action logic
+  }
+  
+    Declarative (recommended)
+  [Authorize(Roles = "EmployeeViewer")]
+  public ActionResult Details(int id)
+    {
+      // Action logic
+    }
+    
