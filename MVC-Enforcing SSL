@@ -1,0 +1,22 @@
+Can also be configured globally:
+Note: The highlighted code above requires all requests to use HTTPS, therefore
+HTTP requests are ignored.
+Enforcing SSL
+      // Requires using Microsoft.AspNetCore.Mvc;
+         public void ConfigureServices(IServiceCollection services){
+            services.Configure<MvcOptions>(options =>
+        {
+              options.Filters.Add(new RequireHttpsAttribute());   /// the most important line
+         });
+         
+****************************************************************************************
+         Redirects all HTTP requests to HTTPS:
+         Further reading: link
+
+      // Requires using Microsoft.AspNetCore.Rewrite;
+         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+         ILoggerFactory loggerFactory)
+         {
+              var options = new RewriteOptions().AddRedirectToHttps();
+              app.UseRewriter(options);
+          }
