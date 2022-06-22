@@ -11,5 +11,21 @@ Controlorii procesează cererile primite, efectuează operațiuni pe model și s
   Difference between Authentication and Authorization?
 Authentification - is the right user? valideaza daca userul este cel bun
 Autorization - verifica ce atribute(roluri) are userul. Ce are acces sa faca
+ 
+  The identity services should be added to the application in the ConfigureServices method in the Startup class
+services.AddIdentity<IdentityUser, IdentityRole>()
+  .AddEntityFrameworkStores<ApplicationDbContext>();
   
-  
+  Password policy:
+§ User's lockout:
+    Configure Identity
+      options.Password.RequireDigit = true;
+      options.Password.RequiredLength = 8;
+      options.Password.RequireNonAlphanumeric = false;
+      options.Password.RequireUppercase = true;
+      options.Password.RequireLowercase = false;
+// Lockout settings
+      options.Lockout.DefaultLockoutTimeSpan =
+      TimeSpan.FromMinutes(30);
+      options.Lockout.MaxFailedAccessAttempts = 10;
+      options.Lockout.AllowedForNewUsers = true;
