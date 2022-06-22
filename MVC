@@ -1,0 +1,71 @@
+  MVC Pattern
+Modelul Model-View-Controller separă o aplicație în trei principale componente: modelul, vizualizarea și controlerul. 
+Controlerul interacționează cu modelul bazat pe cerințele cererii. Ea face potrivit vizualizați și îi furnizează datele necesare pentru afișare.
+
+  MCV Component
+Modelul care conține sau reprezintă datele cu care lucrează utilizatorii.
+Vizualizările definesc modul în care va fi afișată interfața de utilizare a aplicației.
+Controlorii procesează cererile primite, efectuează operațiuni pe model și selectează vizualizări pentru a le reda utilizatorului.
+
+
+  Difference between Authentication and Authorization?
+Authentification - is the right user? valideaza daca userul este cel bun
+Autorization - verifica ce atribute(roluri) are userul. Ce are acces sa faca
+  
+  
+  
+  
+  *************************************************************************
+  Add Controller  *** replace return with request
+  public class HomeController : Controller
+{
+    public string Index()
+    {
+        return "Hello World!";
+    }
+}
+*************************************************************************
+Add a new controller to the Controllers folder called AdminController
+public class AdminController : Controller
+{
+	private IStoreRepository repository;
+	public AdminController(IStoreRepository repo)
+	{
+		repository = repo;
+	}
+	public IActionResult Index()
+	{
+		return View(repository.Products);
+	}
+}
+*************************************************************************
+Change the HomeController as follows:
+
+public class HomeController : Controller
+{
+	public IActionResult Index()
+	{
+		return View("MyView");
+	}
+}
+ ************************************************************************
+ Creating the Controller
+ public class HomeController: Controller {
+    public IActionResult Index(){
+        return View();
+    }
+}
+*************************************************************************
+Add the following Product
+public class Product
+{
+    public int ProductID { get; set; }
+	public string Name { get; set; }
+	public string Description { get; set; }
+    [Column(TypeName = "decimal(8, 2)")]
+	public decimal Price { get; set; }
+	public string Category { get; set; }
+}
+*************************************************************************
+
+  
