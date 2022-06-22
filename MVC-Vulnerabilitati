@@ -1,0 +1,19 @@
+  Cross-Site Request Forgery (CSRF)
+  Este un atac împotriva aplicațiilor găzduite pe web prin care un site web rău intenționat poate sa influenteze interacțiunea dintre un browser client și 
+un site web care are încredere în acest browser. Aceste atacuri sunt posibile deoarece browserele web trimit unele tipuri de jetoane de autentificare automat 
+la fiecare solicitare către un site web. Această formă de exploit este, de asemenea, cunoscut ca un atac cu un singur clic, deoarece atacul profită de 
+sesiunea autentificată anterior a utilizatorului. Un site rău intenționat trimite solicitări POST/GET către site-ul atacat.
+
+
+  Cross-Origin Requests (CORS)
+  Securitatea browserului împiedică o pagină web să facă solicitări AJAX către o altă pagină domeniu. 
+Această restricție se numește politică de aceeași origine și previne un rău intenționat site-ul să citească date sensibile de pe alt site. 
+Cu toate acestea, uneori tu ai putea dori să permiteți altor site-uri să facă solicitări de origine încrucișată către API-ul dvs. web. Cross Origin Resource Sharing (CORS) este un standard W3C care permite unui server
+relaxează politica de aceeași origine. Folosind CORS, un server poate permite în mod explicit unele încrucișări - solicitări de origine în timp ce respinge altele. 
+CORS este mai sigur și mai flexibil decât tehnici anterioare, cum ar fi JSONP.
+
+  Cross-Site Scripting (XSS)
+Este o vulnerabilitate de securitate care permite unui atacator sa plaseze scripturi din partea clientului (de obicei JavaScript) în pagini web. Când alți utilizatori
+încărca paginile afectate, vor rula scripturile atacatorilor, permițând atacatorului să fure cookie-uri și jetoane de sesiune, modificand conținutul paginii web prin DOM
+manipularea sau redirecționarea browserului către o altă pagină. Vulnerabilitățile XSS apar în general atunci când o aplicație preia intrarea utilizatorului și
+îl scoate într-o pagină fără a o valida, codifica.
