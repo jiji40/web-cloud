@@ -1,0 +1,43 @@
+CSRF - este un atac împotriva aplicațiilor găzduite pe web prin care un site web rău intenționat poate influențează interacțiunea dintre 
+un browser client și un site web care are încredere în acest browser. Aceste atacuri sunt posibile deoarece browserele web trimit unele tipuri de
+jetoane de autentificare automat la fiecare solicitare către un site web. Această formă de exploit este, de asemenea, cunoscut ca un atac cu un singur
+clic sau ca sesiune de echitatie, deoarece atacul profită de sesiunea autentificată anterior a utilizatorului. Un site rău intenționat trimite solicitări 
+POST/GET către site-ul atacat (în care utilizatorul este autentificat).
+
+malicious site contains the following HTML form:
+<h1>You Are a Winner!</h1>
+<form action="http://example.com/api/account" method="post">
+<input type="hidden" name="Transaction" value="withdraw" />
+<input type="hidden" name="Amount" value="1000000" />
+<input type="submit" value="Click Me"/>
+</form>
+
+De obicei, atacurile CSRF sunt posibile împotriva site-urilor web care utilizează cookie-uri pentru autentificare, 
+deoarece browserele trimit toate cookie-urile relevante la destinație site-ul web.
+
+Rezolvare atacuri de tip CSRF
+Cea mai comună abordare pentru apărarea împotriva atacurilor CSRF este model de simbol de sincronizare (STP). synchronizer token pattern
+STP este o tehnică folosită atunci când utilizatorul solicită o pagină cu date de formular. 
+Serverul trimite clientului un token asociat cu identitatea utilizatorului curent.
+Clientul trebuie să trimită înapoi jetonul către server pentru verificare. Dacă serverul primește un token care nu se potrivește cu identitatea utilizatorului
+autentificat, cererea ar trebui respinsa. etonul este unic și imprevizibil. Jetonul poate fi folosit și pentru a asigura succesiunea corectă a unei serii de solicitări
+
+generate Antiforgery Tokens by default
+  <form method="post">
+  </form>
+  @using (Html.BeginForm("ChangePassword", "Manage"))
+  {
+  }
+  
+  ValidateAntiForgeryToken
+Filtru de acțiune care poate fi aplicat unei acțiuni individuale, unui controler sau la nivel global pentru aplicație. 
+Solicitările făcute la acțiunile cărora li se aplică acest filtru vor fi blocate, cu excepția cazului în care cererea include un simbol antifalsificare valid 
+  [Authorize]
+    public class AccountController : Controller {
+    [HttpPost]
+    [AllowAnonymous]
+    [ValidateAntiForgeryToken] !!!!~~ the syntax
+    public async Task<IActionResult> Login(LoginModel details) {
+    return View(details);
+    }
+   }
