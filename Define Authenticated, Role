@@ -1,0 +1,8 @@
+Are we able to check in a View if the currently authenticated user has a certain role?
+Yes: @if(!User.IsInRole("ProductManagement")) { @: disabled }
+
+Write the code that only displays a <div> if the user has the "Management" role.
+@if(!User.IsInRole("Management")) { <div></div>}
+
+What approaches can be used to send data between an Action and the View?
+ViewBag, ViewData, TempData
