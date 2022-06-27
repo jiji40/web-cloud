@@ -1,0 +1,11 @@
+public class AddServlet extends HttpServlet
+{
+  protected void doGet(HttpServletRequest req, HttpservletResponse res)
+    {
+    int i = Integer.parseInt(req.getParameter("t1"));
+    int j = Integer.parseInt(req.getParameter("t2"));
+    int k = i + j
+    }
+   PrintWriter out res.getWriter();
+   Out.print(k);
+}
